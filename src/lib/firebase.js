@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
+import { getPerformance } from 'firebase/performance';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDT3LcHyUVF_-Xn2DMeEoIvSxWKPvTrQ4E",
@@ -14,10 +14,12 @@ const firebaseConfig = {
 // Initialize Firebase only if it hasn't been initialized yet
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-// Initialize Analytics only on client-side
-let analytics;
+// Initialize Performance Monitoring only on client-side
+// This automatically tracks Core Web Vitals (LCP, FID, CLS, FCP, TTFB)
+let performance;
+
 if (typeof window !== 'undefined') {
-  analytics = getAnalytics(app);
+  performance = getPerformance(app);
 }
 
-export { app, analytics };
+export { app, performance };
