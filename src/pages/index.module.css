@@ -1,0 +1,102 @@
+.hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: var(--spacing-3xl) var(--spacing-md);
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: var(--font-4xl);
+  font-weight: bold;
+  margin-bottom: var(--spacing-md);
+}
+
+.heroSubtitle {
+  font-size: var(--font-xl);
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--spacing-3xl) 0;
+}
+
+.sectionTitle {
+  font-size: var(--font-3xl);
+  font-weight: bold;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.categoryCard {
+  background-color: var(--color-bg-gray);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.categoryCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.categoryIcon {
+  font-size: var(--font-4xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.categoryName {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: capitalize;
+}
+
+.error {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  color: var(--color-error);
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: var(--font-3xl);
+  }
+
+  .heroSubtitle {
+    font-size: var(--font-lg);
+  }
+
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .categoriesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
