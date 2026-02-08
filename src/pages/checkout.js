@@ -3,10 +3,12 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '../components/CartProvider';
+import { useAnalytics } from '../hooks/useAnalytics';
 import styles from './checkout.module.css';
 
 export default function Checkout() {
   const { items, updateQuantity, removeFromCart, getCartTotal, clearCart } = useCart();
+  const { trackPurchase } = useAnalytics();
   const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -30,6 +32,7 @@ export default function Checkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    trackPurchase(items, total);
     setShowSuccess(true);
   };
 

@@ -2,17 +2,20 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCart } from '../CartProvider';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import styles from './Header.module.css';
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
   const { getCartCount } = useCart();
+  const { trackSearch } = useAnalytics();
   const cartCount = getCartCount();
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
+      trackSearch(searchQuery.trim());
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
     }
   };

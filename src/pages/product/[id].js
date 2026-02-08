@@ -1,12 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useCart } from '../../components/CartProvider';
 import ImageGallery from '../../components/ImageGallery';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import styles from './[id].module.css';
 
 export default function ProductDetail({ product, error }) {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
+  const { trackViewItem, trackAddToCart } = useAnalytics();
+
+  useEffect(() => {
+    if (product) {
+      trackViewItem(product);
+    }
+  }, [product]);
 
   if (error) {
     return (
@@ -89,6 +97,7 @@ export default function ProductDetail({ product, error }) {
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
+    trackAddToCart(product, quantity);
     setQuantity(1);
   };
 
